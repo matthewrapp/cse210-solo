@@ -10,9 +10,11 @@ from game.arcade_output_service import ArcadeOutputService
 
 from game.paddle import Paddle
 from game.brick import Brick
+from game.ball import Ball
 
 from game.batter import Batter
 import arcade
+
 
 def main():
 
@@ -26,31 +28,30 @@ def main():
 
     for i in range(constants.NUM_BALLS):
         # TODO: Create a ball here and add it to the list of balls in the cast
-        pass
+        ball = Ball(random.randint(20, 50), random.randint(20, 50))
+        cast["balls"].append(ball)
 
     cast["bricks"] = []
     for x in range(constants.BRICK_WIDTH * 2,
-                constants.MAX_X - constants.BRICK_WIDTH * 2,
-                constants.BRICK_WIDTH + constants.BRICK_SPACE):
+                   constants.MAX_X - constants.BRICK_WIDTH * 2,
+                   constants.BRICK_WIDTH + constants.BRICK_SPACE):
         for y in range(int(constants.MAX_Y * .7),
-                    int(constants.MAX_Y * .9),
-                    constants.BRICK_HEIGHT + constants.BRICK_SPACE):
+                       int(constants.MAX_Y * .9),
+                       constants.BRICK_HEIGHT + constants.BRICK_SPACE):
             brick = Brick(x, y)
             cast["bricks"].append(brick)
-    
-
 
     # create the script {key: tag, value: list}
     script = {}
 
     input_service = ArcadeInputService()
     output_service = ArcadeOutputService()
-    
+
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
     handle_collisions_action = HandleCollisionsAction()
     draw_actors_action = DrawActorsAction(output_service)
-    
+
     script["input"] = [control_actors_action]
     script["update"] = [move_actors_action, handle_collisions_action]
     script["output"] = [draw_actors_action]

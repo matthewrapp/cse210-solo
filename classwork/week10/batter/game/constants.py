@@ -9,6 +9,7 @@ NUM_BALLS = 5
 
 BALL_SPEED = 3
 BALL_Y = MAX_Y / 2
+BALL_X = MAX_X / 2
 
 PADDLE_Y = 25
 
