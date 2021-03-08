@@ -22,6 +22,9 @@ class Actor:
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
 
+    def set_tag(self, tag):
+        self._tag = tag
+        
     def get_description(self):
         """Gets the artifact's description.
         
